@@ -1,0 +1,12 @@
+{
+    "language": "vi",
+    "TOKEN": "",
+    "BOTNAME": "veXus",
+    "PREFIX": "/",
+    "ADMINBOT": "",
+    "commandDisabled": [],
+    "eventDisabled": [],
+    "DATABASE": {
+        "mongo": ""
+    }
+}

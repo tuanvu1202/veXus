@@ -15,7 +15,7 @@ class example(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.command()
     async def example(self, ctx): 
         pass
 

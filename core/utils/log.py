@@ -1,9 +1,8 @@
 import fade
-
 def logger(data, option):
     if option=="":
         print(fade.purpleblue("[ VEXUS ] > " + data))
     elif option=="load":
-        print(fade.greenblue("[ LOAD ] > " + data))
+        print(fade.greenblue("[ VEXUS ] > " + data))
     elif option=="error":
-        print(fade.pinkred("[ ERROR ] > " + data))
+        print("\033[91m[ VEXUS ] > " + data)

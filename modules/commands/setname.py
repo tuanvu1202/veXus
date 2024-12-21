@@ -2,12 +2,18 @@ import discord
 from discord.ext import commands
 
 class setname(commands.Cog):
+    info = {
+        "name": "setname",
+        "version": "1.0.0",
+        "author": "tuanvu1202",
+        "description": "Đổi tên của người dùng",
+        "catogery": "System",
+        "usage": "",
+        "cooldowns": 0
+    }
+    
     def __init__(self, bot):
         self.bot = bot
-
-    # @commands.Cog.listener() 
-    # async def on_ready(self):
-    #     pass
 
     @commands.command()
     async def setname(self, ctx, member: discord.Member=None, *, new_name=None):

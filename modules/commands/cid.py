@@ -19,6 +19,5 @@ class cid(commands.Cog):
     async def cid(self, ctx):
         await ctx.send(f"**{ctx.message.channel.name}**: {ctx.message.channel.id}")
 
-
 async def setup(bot):
     await bot.add_cog(cid(bot))

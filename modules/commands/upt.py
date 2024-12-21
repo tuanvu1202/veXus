@@ -3,6 +3,16 @@ from discord.ext import commands
 import datetime
 
 class upt(commands.Cog):
+    info = {
+        "name": "upt",
+        "version": "1.0.0",
+        "author": "tuanvu1202",
+        "description": "Xem thời gian Bot hoạt động",
+        "catogery": "System",
+        "usage": "",
+        "cooldowns": 0
+    }
+    
     def __init__(self, bot):
         self.bot = bot
         self.UPT = None

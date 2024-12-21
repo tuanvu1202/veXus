@@ -15,7 +15,7 @@ class kick(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.command()
     async def kick(self, ctx, member: discord.Member=None, reason=None): 
         if member == None:
             await ctx.send("Vui lòng @mention người bạn muốn xóa!")

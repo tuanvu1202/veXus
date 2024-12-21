@@ -1,6 +1,5 @@
-import discord
+import discord, os, json
 from discord.ext import commands
-import os
 from core.utils.log import logger
 
 class cmd(commands.Cog):
@@ -19,11 +18,13 @@ class cmd(commands.Cog):
 
     @commands.command()
     async def cmd(self, ctx, choose=None, command:str=None):
-        config = self.bot.config
-        # config = await config
+        configPath = self.bot.configPath
+        with open(configPath,"r") as f:
+            configValue = json.load(f)
+    
         commandSuccess = 0
         commandFailed = 0
-        if str(ctx.author.id) in config["admin"]:
+        if str(ctx.author.id) in configValue["admin"]:
             if choose == None:
                 await ctx.send("Vui lòng nhập theo cú pháp [load/unload/loadAll/unloadAll] [command]!")
             elif choose.lower() == "load" and command != None: 

@@ -2,8 +2,8 @@ import json, os, asyncio, fade, discord, requests
 from discord.ext import commands
 from core.utils.log import logger
 # Load config
+configPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.json"))
 def loadConfig():
-    configPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.json"))
     try:
         with open(configPath) as f:
             logger("Config found!", "load")
@@ -74,9 +74,9 @@ async def main():
     if not config:
         return  
     client = commands.Bot(command_prefix=config["prefix"], intents=discord.Intents.all())
-    setattr(client, "config", config)
-   
+    setattr(client, "configPath", configPath)
     
+
 
     async with client:
         await loadModule(client, config)

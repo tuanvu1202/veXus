@@ -11,14 +11,13 @@ class gid(commands.Cog):
         "usage": "",
         "cooldowns": 0
     }
-
+    
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
     async def gid(self, ctx):
         await ctx.send(f"**{ctx.guild.name}**: {ctx.guild.id}")
-
 
 async def setup(bot):
     await bot.add_cog(gid(bot))

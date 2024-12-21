@@ -2,12 +2,18 @@ import discord
 from discord.ext import commands
 
 class gid(commands.Cog):
+    info = {
+        "name": "gid",
+        "version": "1.0.0",
+        "author": "tuanvu1202",
+        "description": "Lấy ID của guild",
+        "catogery": "System",
+        "usage": "",
+        "cooldowns": 0
+    }
+
     def __init__(self, bot):
         self.bot = bot
-
-    @commands.Cog.listener() 
-    async def on_ready(self):
-        pass
 
     @commands.command()
     async def gid(self, ctx):

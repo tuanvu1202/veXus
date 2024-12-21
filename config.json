@@ -1,12 +1,24 @@
 {
     "language": "vi",
-    "TOKEN": "",
-    "BOTNAME": "veXus",
-    "PREFIX": "/",
-    "ADMINBOT": "",
-    "commandDisabled": [],
-    "eventDisabled": [],
-    "DATABASE": {
+    "keyactive": "tuanvu",
+    "token": "MTMxOTMxNDE4NzcwNDQ3MTYzMw.GRhjJY.enzR19-W33S5DhybApqXsuZ95E0eMuayL8wQng",
+    "botname": "veXus",
+    "prefix": ".",
+    "unsendEmoji": ":rage:",
+    "admin": [
+        "928180893443588116"
+    ],
+    "status": "Hello World",
+    "commandDisabled": [
+        "meme.py"
+    ],
+    "eventDisabled": [
+        "joinnoti.py",
+        "leavenoti.py",
+        "unsend.py"
+    ],
+    "database": {
         "mongo": ""
-    }
+    },
+    "version": "1.0"
 }

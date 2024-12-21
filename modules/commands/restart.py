@@ -6,9 +6,9 @@ class restart(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener() 
-    async def on_ready(self):
-        pass
+    # @commands.Cog.listener() 
+    # async def on_ready(self):
+    #     pass
 
     @commands.command()
     @commands.is_owner()

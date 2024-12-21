@@ -1,16 +1,14 @@
-import json
-import os
-import asyncio
-import discord
+import json, os, asyncio, fade, discord, requests
 from discord.ext import commands
 from core.utils.log import logger
-
+# Load config
 def loadConfig():
     configPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.json"))
     try:
         with open(configPath) as f:
             logger("Config found!", "load")
-            return json.load(f)
+            config = json.load(f)
+            return config
     except FileNotFoundError as e:
         logger("Config not found!", "error")
         return None
@@ -20,48 +18,68 @@ def loadConfig():
     except Exception as e:
         print(f"An error occurred: {e}", "error")
         return None
-    
-async def loadModule(client):
+        
+def updater():
+    pass
+
+def database():
+    pass
+
+# Load modules 
+async def loadModule(client, config):
     commandCout = 0
     eventCout = 0
     for command in os.listdir("./modules/commands"):
-        if command.endswith(".py"):
+        if command.endswith(".py") and command not in config["commandDisabled"]:
             try:
                 await client.load_extension(f"modules.commands.{command[:-3]}")
                 commandCout+=1
                 logger(f"Loaded command {command}!","load")
+                
+                await asyncio.sleep(0.025)
             except Exception as e:
                 logger(f"Failed to load command {command[:-3]}: {e}","error")
-            except Exception as e:
-                logger(f"Unexpected error: {e}", "error")
-                return None
+                await asyncio.sleep(0.025)
 
     for event in os.listdir("./modules/events"):
-        if event.endswith(".py"):
+        if event.endswith(".py") and event not in config["eventDisabled"]:
             try:
                 await client.load_extension(f"modules.events.{event[:-3]}")
                 eventCout+=1
                 logger(f"Loaded event {event}!","load")
-
+                await asyncio.sleep(0.025)
             except Exception as e:
                 logger(f"Failed to load event {event[:-3]}: {e}","error")
+                await asyncio.sleep(0.025)
 
-            except Exception as e:
-                logger(f"Unexpected error: {e}", "error")
-                return None
+    logger(f"Loaded successfully {commandCout} Commands and {eventCout} Events!","")
 
-    print(f"Loaded successfully {commandCout} Commands and {eventCout} Events!")
-
+# Main
 async def main():
+    logo = """
+ ██▒   █▓▓█████ ▒██   ██▒ █    ██   ██████ 
+▓██░   █▒▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ 
+ ▓██  █▒░▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   
+  ▒██ █░░▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒
+   ▒▀█░  ░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒
+   ░ ▐░  ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░
+   ░ ░░   ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░
+     ░░     ░    ░    ░   ░░░ ░ ░ ░  ░  ░  
+      ░     ░  ░ ░    ░     ░           ░  
+     ░                                     
+"""
+    print(fade.purpleblue(logo))
     # Find Config
     config = loadConfig()
-    if not config or "TOKEN" not in config:
-        print("Config.json Error!")
-        return 
-    #Load commands and events
-    client = commands.Bot(command_prefix=config["PREFIX"], intents=discord.Intents.all())
+    if not config:
+        return  
+    client = commands.Bot(command_prefix=config["prefix"], intents=discord.Intents.all())
+    setattr(client, "config", config)
+   
+    
+
     async with client:
-        await loadModule(client)
-        await client.start(config["TOKEN"])
+        await loadModule(client, config)
+        await client.start(config["token"])
 
 asyncio.run(main())

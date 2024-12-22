@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 
 class cid(commands.Cog):
     info = {
@@ -15,7 +16,7 @@ class cid(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.hybrid_command(name="cid")
     async def cid(self, ctx):
         await ctx.send(f"**{ctx.message.channel.name}**: {ctx.message.channel.id}")
 

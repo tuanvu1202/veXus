@@ -1,3 +1,6 @@
-# from pymongo import MongoClient
-# import json
-# from ....main import config
+from motor.motor_asyncio import AsyncIOMotorClient
+
+uri = config
+
+class database():
+    

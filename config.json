@@ -22,7 +22,7 @@
         "unsend.py"
     ],
     "database": {
-        "mongo": ""
+        "mongoUri": "mongodb://localhost:27017/"
     },
     "version": "1.0",
     "adminOnly": true

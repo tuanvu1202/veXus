@@ -2,17 +2,18 @@ import json, os, asyncio, fade, discord
 from discord.ext import commands
 from discord.ext.commands import *
 from core.utils.log import logger
+# from core.database.mongo import database
 # Load config
 
 configPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.json"))
 with open(configPath) as f:
-        logger("Config found!", "load")
-        config = json.load(f)
+    logger("Config found!", "load")
+    config = json.load(f)
 client = commands.Bot(command_prefix=config["prefix"], intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
-    print("Success: Bot is connected to Discord!")
+    logger("Success: Bot is connected to Discord!","")
 
 @client.event
 async def on_command_error(ctx, error):

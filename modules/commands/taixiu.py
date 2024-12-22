@@ -16,6 +16,7 @@ class taixiu(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @commands.cooldown(1,10,commands.BucketType.user)
     async def tx(self, ctx, *args): 
         tilethang = 0.9
         timedelay = 1.5

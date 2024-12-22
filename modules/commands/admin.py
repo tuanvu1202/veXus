@@ -25,14 +25,12 @@ class admin(commands.Cog):
         
         # with open(tempConfig, "w", encoding='utf-8') as f:
         #     json.dump(configValue, f, indent=4,ensure_ascii=False)
+        
         adminList = []
         
-        for i in configValue["admin"]:
-            user = self.bot.get_user(i)
-            adminList.append(user.name)
-        # for id in configValue["admin"]:
-        #     adminList.append(id)
-        # adminl = "\n".join(adminList)
+        # for adUser in configValue["admin"]:
+        #     admin = self.bot.get_user(adUser)
+        #     adminList.append(f"{admin.name}")
     
         if str(ctx.author.id) in configValue["admin"]:
             if choose == None:
@@ -43,22 +41,29 @@ class admin(commands.Cog):
             elif member == None:
                 await ctx.send("Vui lòng @mention")
             elif choose == "add":
-                if member.id not in configValue["admin"]:
-                    # try:
-                    #     configValue["admin"].append(member.id)
-                    #     with open(configPath, "w", encoding='utf-8') as f:
-                    #         json.dump(configValue, f, indent=4,ensure_ascii=False)
-                    #     await ctx.send(f"Đã thêm {member.name} vào danh sách Admin!")
-                    # except Exception as e:
-                    #     await ctx.send(f"Lỗi khi thêm người dùng: {e}")
+                if str(member.id) not in configValue["admin"]:
+                    try:
+                        configValue["admin"].append(str(member.id))
+                        with open(configPath, "w", encoding='utf-8') as f:
+                            json.dump(configValue, f, indent=4,ensure_ascii=False)
+                        await ctx.send(f"Đã thêm **{member.name}** vào danh sách Admin!")
+                    except Exception as e:
+                        await ctx.send(f"Lỗi khi thêm người dùng: {e}")
                     pass
                 else:
                     await ctx.send("Người dùng đã tồn tại!")
             elif choose == "remove":
-                if member.id in configValue["admin"]:
+                if str(member.id) in configValue["admin"]:
+                    try:
+                        configValue["admin"].remove(str(member.id))
+                        with open(configPath, "w", encoding='utf-8') as f:
+                            json.dump(configValue, f, indent=4,ensure_ascii=False)
+                        await ctx.send(f"Đã xóa **{member.name}** khỏi danh sách Admin!")
+                    except Exception as e:
+                        await ctx.send(f"Lỗi khi xóa người dùng: {e}")
                     pass
                 else:
-                    await ctx.send("Người dùng chưa tồn tại!")
+                    await ctx.send("Người dùng không tồn tại!")
             else:
                 await ctx.send("Lựa chọn không hợp lệ!")
         else:

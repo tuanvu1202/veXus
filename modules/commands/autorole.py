@@ -1,6 +1,5 @@
-import discord
+import discord, json
 from discord.ext import commands
-from discord.utils import get
 
 class autorole(commands.Cog):
     info = {
@@ -23,19 +22,26 @@ class autorole(commands.Cog):
     @commands.command()
     async def autorole(self, ctx, choose=None, *role, member: discord.Member=None): 
         configPath = self.bot.configPath
-        # guild = member.guild
-        # roles = []
+        with open(configPath, "r") as f:
+            configValue = json.load(f)
         
-        if str(ctx.author.id) in config["admin"]:
+        if str(ctx.author.id) in configPath["admin"]:
             if choose == 'list':
-                for i in config["autoRole"]:
-                    # roleName = guild.get_role(i)
-                    # roles.append(roleName)
-                    await ctx.send(i)
-                    
-                await ctx.send(roles)
-            elif choose == 'add':
+                # for i in configPath["autoRole"]:
+                #    uo
                 pass
+            elif choose == 'add':
+                if str(role) not in configValue["autoRole"]:
+                    try:
+                        configValue["autoRole"].append(str(guild))
+                        with open(configPath, "w", encoding='utf-8') as f:
+                            json.dump(configValue, f, indent=4,ensure_ascii=False)
+                        await ctx.send(f"Đã thêm {member.name} vào danh sách Admin!")
+                    except Exception as e:
+                        await ctx.send(f"Lỗi khi thêm người dùng: {e}")
+                    pass
+                else:
+                    await ctx.send("Người dùng đã tồn tại!")
             elif choose == 'remove':
                 pass
             else:

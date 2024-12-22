@@ -1,4 +1,4 @@
-import json, os, asyncio, fade, discord, requests
+import json, os, asyncio, fade, discord
 from discord.ext import commands
 from core.utils.log import logger
 # Load config

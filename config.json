@@ -6,15 +6,14 @@
     "prefix": "/",
     "unsendEmoji": ":rage:",
     "admin": [
-        "928180893443588116"
+        "928180893443588116",
+        "1319314187704471633"
     ],
     "status": "Hello World",
     "autoRole": [
         "1320077327383793695"
     ],
-    "commandDisabled": [
-        "meme.py"
-    ],
+    "commandDisabled": [],
     "eventDisabled": [
         "joinnoti.py",
         "leavenoti.py",

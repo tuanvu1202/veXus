@@ -1,9 +1,7 @@
 import json, os, asyncio, fade, discord, datetime, pytz
 from discord.ext import commands
 from discord.ext.commands import *
-from core.utils.log import logger
-# from core.database.mongo import database
-# Load config
+from utils.log import logger
 
 configPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.json"))
 with open(configPath) as f:
@@ -14,6 +12,15 @@ client = commands.Bot(command_prefix=config["prefix"], intents=discord.Intents.a
 @client.event
 async def on_ready():
     logger("Success: Bot is connected to Discord!","")
+    for guild in client.guilds:
+        for member in guild.members:
+            data = {
+                "_id": member.id,
+                "money": 100000,
+                "bank": 100000,
+                "level": 0,
+                "xp": 0,
+            }
 
 @client.event
 async def on_command_error(ctx, error):
@@ -90,7 +97,6 @@ async def main():
      ░                                     
 """
     print(fade.purpleblue(logo))
-    # Find Config
     config = loadConfig()
     if not config:
         return  

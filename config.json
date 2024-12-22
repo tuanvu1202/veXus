@@ -3,11 +3,11 @@
     "keyactive": "tuanvu",
     "token": "MTMxOTMxNDE4NzcwNDQ3MTYzMw.GRhjJY.enzR19-W33S5DhybApqXsuZ95E0eMuayL8wQng",
     "botname": "veXus",
-    "prefix": "/",
+    "prefix": "x",
     "unsendEmoji": ":rage:",
     "admin": [
         "928180893443588116",
-        "1319314187704471633"
+        "972163644072796191"
     ],
     "status": "Hello World",
     "autoRole": [
@@ -20,7 +20,8 @@
         "unsend.py"
     ],
     "database": {
-        "mongoUri": "mongodb://localhost:27017/"
+        "mongoUri": "mongodb://localhost:27017/",
+        "mongoDB": "veXus"
     },
     "version": "1.0",
     "adminOnly": true

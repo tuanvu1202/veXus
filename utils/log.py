@@ -6,3 +6,5 @@ def logger(data, option):
         print(fade.greenblue("[ VEXUS ] > " + data))
     elif option=="error":
         print("\033[91m[ VEXUS ] > " + data)
+    elif option=="database":
+        print(fade.greenblue("[ VEXUS ] > " + data))

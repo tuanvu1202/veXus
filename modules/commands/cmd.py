@@ -1,6 +1,6 @@
 import discord, os, json
 from discord.ext import commands
-from core.utils.log import logger
+from utils.log import logger
 
 class cmd(commands.Cog):
     info = {
@@ -136,7 +136,7 @@ class cmd(commands.Cog):
             elif choose.lower() == "unloadall":
                 try:
                     for file in os.listdir("modules/commands"):
-                        if file.endswith(".py"):
+                        if file.endswith(".py") and file != "cmd.py":
                             try:
                                 if file not in configValue["commandDisabled"]:
                                     configValue["commandDisabled"].append(file)

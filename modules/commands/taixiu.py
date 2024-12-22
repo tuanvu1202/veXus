@@ -9,7 +9,7 @@ class taixiu(commands.Cog):
         "description": "Game tài xỉu trên Discord",
         "catogery": "Game",
         "usage": "",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):
@@ -112,7 +112,7 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **Đang lắc**\n"
                 f"Kết quả: **Chưa có**\n"
                 f"Trạng thái: **Chưa có**\n"     
-                f"Lắc",
+                f"Lắc...",
             )
             
             msg1 = discord.Embed(title="🏮───「Tài Xỉu」───🏮",colour=ctx.author.color, description=
@@ -120,7 +120,7 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **{number[0]}**\n"
                 f"Kết quả: **Chưa có**\n"
                 f"Trạng thái: **Chưa có**\n"
-                f"{emoji[0]} Lắc"
+                f"{emoji[0]}"
             )
             
             msg2 = discord.Embed(title="🏮───「Tài Xỉu」───🏮",colour=ctx.author.color, description=
@@ -128,7 +128,7 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **{number[0]+number[1]}**\n"
                 f"Kết quả: **Chưa có**\n"
                 f"Trạng thái: **Chưa có**\n"
-                f"{emoji[0]} {emoji[1]} Lắc"
+                f"{emoji[0]}  {emoji[1]}"
             )
             
             msg3 = discord.Embed(title="🏮───「Tài Xỉu」───🏮",colour=ctx.author.color, description=
@@ -136,12 +136,18 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **{total}**\n"
                 f"Kết quả: **{ans}**\n"
                 f"Trạng thái: {'lụm về' if result == 'win' else 'mất mẹ'} **{mn:,}** VNĐ\n"
-                f"{emoji[0]} {emoji[1]} {emoji[2]}"
+                f"{emoji[0]}  {emoji[1]}  {emoji[2]}"
             )
             msg.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
             msg1.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
             msg2.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
             msg3.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
+            
+            msg.set_thumbnail(url="https://media.tenor.com/sUiwSBs8S6QAAAAj/dice-game.gif")
+            msg1.set_thumbnail(url="https://media.tenor.com/sUiwSBs8S6QAAAAj/dice-game.gif")
+            msg2.set_thumbnail(url="https://media.tenor.com/sUiwSBs8S6QAAAAj/dice-game.gif")
+            msg3.set_thumbnail(url="https://luattriminh.vn/wp-content/uploads/2024/08/tai-xiu-online-la-gi-tinhay_org-1.png")
+            
             msg = await ctx.reply(embed=msg)
             await asyncio.sleep(timedelay * 1)
             await msg.edit(embed=msg1)

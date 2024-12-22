@@ -10,7 +10,7 @@ class cid(commands.Cog):
         "description": "Lấy ID của channel",
         "catogery": "System",
         "usage": "",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):

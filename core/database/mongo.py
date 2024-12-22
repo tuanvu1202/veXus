@@ -1,6 +1,6 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 
-uri = config
+uri = 
 
 class database():
     

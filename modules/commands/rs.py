@@ -9,7 +9,7 @@ class rs(commands.Cog):
         "description": "Khởi động lại Bot!",
         "catogery": "System",
         "usage": "",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):
@@ -22,7 +22,7 @@ class rs(commands.Cog):
             configValue = json.load(f)
         
         if str(ctx.author.id) in configValue["admin"]:
-            await ctx.send("Tiến hành khởi động lại :white_check_mark: !")
+            await ctx.send("Tiến hành khởi động lại :white_check_mark:")
             os.execv(sys.executable, ['python'] + sys.argv)
             
         self.bot.run(configValue["token"])

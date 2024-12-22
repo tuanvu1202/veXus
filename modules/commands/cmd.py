@@ -10,7 +10,6 @@ class cmd(commands.Cog):
         "description": "Quản lý Command của hệ thống",
         "catogery": "System",
         "usage": "load/loadall/unload/unloadall",
-        "cooldowns": 0
     }
 
     def __init__(self, bot):

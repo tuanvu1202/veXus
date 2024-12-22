@@ -9,7 +9,7 @@ class kick(commands.Cog):
         "description": "Xóa người cần xóa bằng @mention",
         "catogery": "System",
         "usage": "@mention",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):

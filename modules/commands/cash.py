@@ -9,14 +9,11 @@ class example(commands.Cog):
         "description": "Kiểm tra tiền của bản thân hoặc @mention",
         "catogery": "Utils",
         "usage": "",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):
         self.bot = bot
-    
-    async def create_account(self, user):
-        
 
     @commands.command()
     async def example(self, ctx): 

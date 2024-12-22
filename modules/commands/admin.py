@@ -9,7 +9,7 @@ class admin(commands.Cog):
         "description": "Quản lý Command của hệ thống",
         "catogery": "System",
         "usage": "admin [add/remove/list/only]",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):

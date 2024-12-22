@@ -10,7 +10,7 @@ class load(commands.Cog):
         "description": "Load Command của hệ thống",
         "catogery": "System",
         "usage": "load",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):

@@ -9,7 +9,7 @@ class uid(commands.Cog):
         "description": "Lấy ID của người dùng",
         "catogery": "System",
         "usage": "",
-        "cooldowns": 0
+        
     }
     
     def __init__(self, bot):

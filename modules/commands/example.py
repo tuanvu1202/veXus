@@ -9,7 +9,6 @@ class example(commands.Cog):
         "description": "",
         "catogery": "",
         "usage": "",
-        "cooldowns": 0
     }
 
     def __init__(self, bot):

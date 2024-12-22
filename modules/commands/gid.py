@@ -9,7 +9,7 @@ class gid(commands.Cog):
         "description": "Lấy ID của guild",
         "catogery": "System",
         "usage": "",
-        "cooldowns": 0
+        
     }
     
     def __init__(self, bot):

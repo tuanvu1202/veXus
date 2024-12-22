@@ -10,16 +10,16 @@ class upt(commands.Cog):
         "description": "Xem thời gian Bot hoạt động",
         "catogery": "System",
         "usage": "",
-        "cooldowns": 0
+        
     }
     
     def __init__(self, bot):
         self.bot = bot
-        self.UPT = None
+        self.StartTime = None
 
     @commands.Cog.listener() 
     async def on_ready(self):
-        self.UPT = datetime.datetime.now()
+        self.StartTime = discord.utils.utcnow()
 
     @commands.command()
     async def upt(self, ctx):
@@ -32,9 +32,16 @@ class upt(commands.Cog):
             else:
                 return "Chậm"
         
-        await ctx.send(f"Ping: **{int(ping)}** ms\nTình trạng: **{getStatusByPing(ping)}**")
-        await ctx.send(self.UPT)
-        
+        msg = discord.Embed(
+            title="veXus", 
+            colour=ctx.author.color, 
+            description=
+            f"Uptime: {discord.utils.format_dt(self.StartTime, "F")}\n"
+            f"Ping: **{int(ping)}ms**\n"
+            f"Status: **{getStatusByPing(ping)}**"
+        )
+        msg.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png") 
+        await ctx.reply(embed=msg)
 
 async def setup(bot):
     await bot.add_cog(upt(bot))

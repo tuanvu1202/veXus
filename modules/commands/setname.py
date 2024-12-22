@@ -9,7 +9,7 @@ class setname(commands.Cog):
         "description": "Đổi tên của người dùng",
         "catogery": "System",
         "usage": "",
-        "cooldowns": 0
+        
     }
     
     def __init__(self, bot):

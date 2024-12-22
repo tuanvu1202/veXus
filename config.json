@@ -13,9 +13,7 @@
     "autoRole": [
         "1320077327383793695"
     ],
-    "commandDisabled": [
-        "test.py"
-    ],
+    "commandDisabled": [],
     "eventDisabled": [
         "joinnoti.py",
         "leavenoti.py",

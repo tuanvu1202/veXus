@@ -9,7 +9,7 @@ class autorole(commands.Cog):
         "description": "Tự động set role cho thành viên mới tham gia",
         "catogery": "Utils",
         "usage": "setrole [add/remove/list]",
-        "cooldowns": 0
+        
     }
 
     def __init__(self, bot):

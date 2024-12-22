@@ -34,16 +34,17 @@ class cmd(commands.Cog):
                         if(file.endswith(".py") and file[:-3] == command):
                             commandFound = True
                             try:
-                                await self.bot.load_extension(f"modules.commands.{command}")
                                 if file in configValue["commandDisabled"]:
                                     configValue["commandDisabled"].remove(file)
                                     with open(configPath, "w", encoding='utf-8') as f:
                                         json.dump(configValue, f, indent=4,ensure_ascii=False)
+                                        await self.bot.load_extension(f"modules.commands.{command}")
                                         await ctx.send("Load thành công 1 lệnh!")
                                         logger(f"Load thành công {file}", "load")
                                         return
                                 else:
-                                    await ctx.send("Lệnh đã được Load trước đó!")
+                                    await self.bot.load_extension(f"modules.commands.{command}")
+                                    await ctx.send("Load thành công 1 lệnh!")
                             except commands.ExtensionAlreadyLoaded:
                                 try:
                                     await self.bot.reload_extension(f"modules.commands.{command}")
@@ -84,9 +85,16 @@ class cmd(commands.Cog):
                                 else:
                                     await ctx.send("Lệnh đã được Unload trước đó!")
                             except commands.ExtensionNotLoaded:
-                                await ctx.send("Lệnh chưa được Load!")
-                                logger(f"Unload không được {file}", "error")
-                                return
+                                if file not in configValue["commandDisabled"]:
+                                    configValue["commandDisabled"].append(file)
+                                    with open(configPath, "w", encoding='utf-8') as f:
+                                        json.dump(configValue, f, indent=4,ensure_ascii=False)
+                                        await ctx.send("Unload thành công 1 lệnh!")
+                                        logger(f"Unload thành công {file}", "load")
+                                        return
+                                else:
+                                    await ctx.send("Unload thành công 1 lệnh!")
+                                    logger(f"Unload thành công {file}", "load")
                             except Exception as e:
                                 await ctx.send("Unload thành công 0 lệnh!")
                                 logger(f"Unload thành công {file}", "load")

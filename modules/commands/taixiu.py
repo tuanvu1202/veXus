@@ -16,7 +16,7 @@ class taixiu(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def taixiu(self, ctx, *args): 
+    async def tx(self, ctx, *args): 
         tilethang = 0.9
         timedelay = 1.5
     
@@ -111,7 +111,7 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **Đang lắc**\n"
                 f"Kết quả: **Chưa có**\n"
                 f"Trạng thái: **Chưa có**\n"     
-                f"<:rolldice:1320073816109748234>",
+                f"Lắc",
             )
             
             msg1 = discord.Embed(title="🏮───「Tài Xỉu」───🏮",colour=ctx.author.color, description=
@@ -119,7 +119,7 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **{number[0]}**\n"
                 f"Kết quả: **Chưa có**\n"
                 f"Trạng thái: **Chưa có**\n"
-                f"{emoji[0]} <:rolldice:1320073816109748234>"
+                f"{emoji[0]} Lắc"
             )
             
             msg2 = discord.Embed(title="🏮───「Tài Xỉu」───🏮",colour=ctx.author.color, description=
@@ -127,7 +127,7 @@ class taixiu(commands.Cog):
                 f"Tổng xúc xắc: **{number[0]+number[1]}**\n"
                 f"Kết quả: **Chưa có**\n"
                 f"Trạng thái: **Chưa có**\n"
-                f"{emoji[0]} {emoji[1]} <:rolldice:1320073816109748234>"
+                f"{emoji[0]} {emoji[1]} Lắc"
             )
             
             msg3 = discord.Embed(title="🏮───「Tài Xỉu」───🏮",colour=ctx.author.color, description=
@@ -137,7 +137,10 @@ class taixiu(commands.Cog):
                 f"Trạng thái: {'lụm về' if result == 'win' else 'mất mẹ'} **{mn:,}** VNĐ\n"
                 f"{emoji[0]} {emoji[1]} {emoji[2]}"
             )
-            
+            msg.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
+            msg1.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
+            msg2.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
+            msg3.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
             msg = await ctx.reply(embed=msg)
             await asyncio.sleep(timedelay * 1)
             await msg.edit(embed=msg1)

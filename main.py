@@ -1,8 +1,28 @@
 import json, os, asyncio, fade, discord
 from discord.ext import commands
+from discord.ext.commands import *
 from core.utils.log import logger
 # Load config
+
 configPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.json"))
+with open(configPath) as f:
+        logger("Config found!", "load")
+        config = json.load(f)
+client = commands.Bot(command_prefix=config["prefix"], intents=discord.Intents.all())
+
+@client.event
+async def on_ready():
+    print("Success: Bot is connected to Discord!")
+
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        await ctx.send("Lệnh không tồn tại!")
+    elif isinstance(error, CommandOnCooldown):
+        await ctx.send(f"Bạn sử dụng lệnh quá nhanh. Vui lòng thử sai sau {error.retry_after:.3f}s")
+    elif isinstance(error, NSFWChannelRequired):
+        await ctx.send("Lệnh này chỉ được trong Channel NSFW!")
+
 def loadConfig():
     try:
         with open(configPath) as f:
@@ -73,11 +93,8 @@ async def main():
     config = loadConfig()
     if not config:
         return  
-    client = commands.Bot(command_prefix=config["prefix"], intents=discord.Intents.all())
-    setattr(client, "configPath", configPath)
     
-
-
+    setattr(client, "configPath", configPath)
     async with client:
         await loadModule(client, config)
         await client.start(config["token"])

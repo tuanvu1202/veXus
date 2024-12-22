@@ -8,7 +8,7 @@ class admin(commands.Cog):
         "author": "tuanvu1202",
         "description": "Quản lý Command của hệ thống",
         "catogery": "System",
-        "usage": "load/loadall/unload/unloadall",
+        "usage": "admin [add/remove/list/only]",
         "cooldowns": 0
     }
 
@@ -18,26 +18,41 @@ class admin(commands.Cog):
     @commands.command()
     async def admin(self, ctx, choose=None, member: discord.Member=None):
         configPath = self.bot.configPath
+        
         with open(configPath, "r") as f:
             configValue = json.load(f)
-        
-        # tempConfig = configPath + ".temp"
-        
-        # with open(tempConfig, "w", encoding='utf-8') as f:
-        #     json.dump(configValue, f, indent=4,ensure_ascii=False)
-        
-        adminList = []
-        
-        # for adUser in configValue["admin"]:
-        #     admin = self.bot.get_user(adUser)
-        #     adminList.append(f"{admin.name}")
     
         if str(ctx.author.id) in configValue["admin"]:
             if choose == None:
                 await ctx.send("Vui lòng nhập lựa chọn [add/remove/list] @mention")
+                return
             if choose == "list":
-                msg = discord.Embed(title="DANH SÁCH ADMIN",colour=ctx.author.color, description=f"{adminList}")
+                adminList = []
+                i = 0
+                for adUser in configValue["admin"]:
+                    i+=1
+                    adminList.append(f"{i}. <@{adUser}>")
+                boardAd = "\n".join(adminList)
+                msg = discord.Embed(title="DANH SÁCH ADMIN",colour=ctx.author.color, description=f"{boardAd}")
+                msg.set_footer(text = "veXus Copyright © 2024-2025", icon_url = "https://i.ibb.co/y063smH/veXus.png")
                 await ctx.reply(embed=msg)
+            elif choose == "only":
+                if "adminOnly" not in configValue:
+                    configValue["adminOnly"] = True
+                    with open(configPath, "w", encoding='utf-8') as f:
+                        json.dump(configValue, f, indent=4,ensure_ascii=False)
+                        await ctx.send("Đã bật thành công chế độ AdminOnly!")
+                else:
+                    if configValue["adminOnly"] == True:
+                        configValue["adminOnly"] = False
+                        with open(configPath, "w", encoding='utf-8') as f:
+                            json.dump(configValue, f, indent=4,ensure_ascii=False)
+                            await ctx.send("Đã tắt thành công chế độ AdminOnly!")
+                    elif configValue["adminOnly"] == False:
+                        configValue["adminOnly"] = True
+                        with open(configPath, "w", encoding='utf-8') as f:
+                            json.dump(configValue, f, indent=4,ensure_ascii=False)
+                            await ctx.send("Đã bật thành công chế độ AdminOnly")
             elif member == None:
                 await ctx.send("Vui lòng @mention")
             elif choose == "add":

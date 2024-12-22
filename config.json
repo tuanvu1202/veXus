@@ -13,7 +13,9 @@
     "autoRole": [
         "1320077327383793695"
     ],
-    "commandDisabled": [],
+    "commandDisabled": [
+        "test.py"
+    ],
     "eventDisabled": [
         "joinnoti.py",
         "leavenoti.py",
@@ -22,5 +24,6 @@
     "database": {
         "mongo": ""
     },
-    "version": "1.0"
+    "version": "1.0",
+    "adminOnly": true
 }

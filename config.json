@@ -1,13 +1,12 @@
 {
     "language": "vi",
     "keyactive": "tuanvu",
-    "token": "MTMxOTMxNDE4NzcwNDQ3MTYzMw.GRhjJY.enzR19-W33S5DhybApqXsuZ95E0eMuayL8wQng",
+    "token": "MTMyNjA2ODM2Nzg4MjE5MDg3OA.G7Le-E.UtGGfzxlLtoxJThLJoaOPSGWuC85Jtu6V8Z568",
     "botname": "veXus",
     "prefix": "x",
     "unsendEmoji": ":rage:",
     "admin": [
-        "928180893443588116",
-        "972163644072796191"
+        "928180893443588116"
     ],
     "status": "Hello World",
     "autoRole": [

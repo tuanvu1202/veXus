@@ -105,5 +105,6 @@ async def main():
     async with client:
         await loadModule(client, config)
         await client.start(config["token"])
+        await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=f"Activity", type=discord.ActivityType.listening))
 
 asyncio.run(main())
